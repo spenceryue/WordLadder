@@ -33,6 +33,7 @@ public class Main {
 	public static boolean dFS (String neighbor, String value, Set<String> visited, ArrayList<String> path,Set<String> dic){
 		boolean wordLadder=false;
 		int index=0;
+		int counter=0;
 		String holder = neighbor;
 		String[] s1 = neighbor.split("");
 		String[] s2 = value.split("");
@@ -48,12 +49,12 @@ public class Main {
 				index=x+1;
 				if(index>=value.length()){
 					index=0;
+					break;
 				}
-				break;
 			}
 		}
 		
-		while(index<neighbor.length()){
+		while(counter!=4){//index<neighbor.length()
 			for(int i= 'a'; i<'{';i++){
 				StringBuilder builder = new StringBuilder(5);
 
@@ -77,7 +78,12 @@ public class Main {
 			}
 			neighbor=holder.toString();
 			s1 = neighbor.split("");
-			index++;
+			if(index!=4){
+				index++;
+			}else{
+				index=0;
+			}
+		counter++;
 		}
 		
 		return false;
